@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة العمل الموحدة Billing System| شركة مياه الشرب والصرف الصحي بالجيزة</title>
+    <title>منصة العمل الموحدة Billing System | شركة مياه الشرب والصرف الصحي بالجيزة</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
@@ -38,14 +38,14 @@
 </head>
 <body class="text-slate-800 min-h-screen flex flex-col justify-between selection:bg-slate-200">
 
-    <!-- Header Section (Matching Image Style) -->
+    <!-- Header Section -->
     <header class="pt-12 pb-8 px-4 text-center">
         <div class="max-w-4xl mx-auto">
             <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight mb-2">
                 منصة العمل الموحدة
             </h1>
             <p class="text-xs sm:text-sm text-slate-400 tracking-wider font-medium">
-                GCWW • Work Links Platform • v7
+                GCWW • Billing System • v1
             </p>
         </div>
     </header>
@@ -59,8 +59,8 @@
             <input type="text" id="searchInput" oninput="filterLinks()" placeholder="ابحث عن النظام أو الخدمة..." class="w-full pr-11 pl-4 py-3 bg-white border border-slate-200/80 rounded-2xl focus:outline-none focus:ring-2 focus:ring-slate-400 shadow-sm transition-all text-sm text-center">
         </div>
 
-        <!-- Links Grid (Vertical Cards Layout matching design) -->
-        <div id="linksGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+        <!-- Links Grid (Responsive 6-cards layout) -->
+        <div id="linksGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-5">
             <!-- Cards populated dynamically -->
         </div>
 
@@ -76,7 +76,12 @@
     <footer class="py-6 border-t border-slate-200/60 bg-[#f8f7f4]">
         <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
             <p>جميع الحقوق محفوظة &copy; شركة مياه الشرب والصرف الصحي بالجيزة (GCWW)</p>
-            <p class="text-slate-700 font-bold">تصميم: <span class="text-slate-1100 font-extrabold">Ahmed Madeny</span></p> <span class="text-slate-1100 font-extrabold"> Eman Abdelhameed</span></p> <span class="text-slate-1100 font-extrabold"> Rana Ismeal </span></p>
+            <p class="text-slate-700 font-bold flex flex-wrap items-center justify-center gap-1">
+                <span>تصميم:</span>
+                <span class="text-slate-900 font-extrabold">Ahmed Madeny</span> •
+                <span class="text-slate-900 font-extrabold">Eman Abdelhameed</span> •
+                <span class="text-slate-900 font-extrabold">Rana Ismeal</span>
+            </p>
         </div>
     </footer>
 
@@ -128,8 +133,8 @@
                 title: "الصرف الصناعى",
                 subtitle: "نظام الفوترة",
                 url: "https://induster.gcww.com.eg/",
-                icon: "fa-file-invoice-dollar text-slate-700",
-                description: "أخرى."
+                icon: "fa-industry text-slate-700",
+                description: "منظومة فواتير وتراخيص الصرف الصناعي."
             }
         ];
 
@@ -154,7 +159,7 @@
                     </div>
 
                     <!-- Title -->
-                    <h3 class="font-extrabold text-slate-900 text-lg mb-1 tracking-tight">
+                    <h3 class="font-extrabold text-slate-900 text-base mb-1 tracking-tight leading-tight">
                         ${prog.title}
                     </h3>
 
@@ -172,7 +177,7 @@
 
         function filterLinks() {
             const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = programs.format ? programs : programs.filter(p => 
+            const filtered = programs.filter(p => 
                 p.title.toLowerCase().includes(query) || 
                 p.subtitle.toLowerCase().includes(query) ||
                 p.description.toLowerCase().includes(query)
