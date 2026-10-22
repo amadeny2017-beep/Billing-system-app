@@ -38,14 +38,17 @@
 </head>
 <body class="text-slate-800 min-h-screen flex flex-col justify-between selection:bg-slate-200">
 
-    <!-- Header Section -->
-    <header class="pt-12 pb-8 px-4 text-center">
-        <div class="max-w-4xl mx-auto">
+    <!-- Header Section with Logo -->
+    <header class="pt-10 pb-6 px-4 text-center">
+        <div class="max-w-4xl mx-auto flex flex-col items-center">
+            <!-- Company Logo -->
+            <img src="images.jfif" alt="شعار شركة مياه الشرب والصرف الصحي بالجيزة" class="h-24 w-auto mb-4 drop-shadow-sm object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/1/14/No_image_available.svg'; this.onerror=null;">
+            
             <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight mb-2">
                 منصة العمل الموحدة
             </h1>
             <p class="text-xs sm:text-sm text-slate-400 tracking-wider font-medium">
-                GCWW • Billing System • v1
+                GCWW • Work Links Platform • v7
             </p>
         </div>
     </header>
@@ -59,7 +62,7 @@
             <input type="text" id="searchInput" oninput="filterLinks()" placeholder="ابحث عن النظام أو الخدمة..." class="w-full pr-11 pl-4 py-3 bg-white border border-slate-200/80 rounded-2xl focus:outline-none focus:ring-2 focus:ring-slate-400 shadow-sm transition-all text-sm text-center">
         </div>
 
-        <!-- Links Grid (Responsive 6-cards layout) -->
+        <!-- Links Grid (Responsive Grid) -->
         <div id="linksGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-5">
             <!-- Cards populated dynamically -->
         </div>
@@ -134,7 +137,7 @@
                 subtitle: "نظام الفوترة",
                 url: "https://induster.gcww.com.eg/",
                 icon: "fa-industry text-slate-700",
-                description: "منظومة فواتير وتراخيص الصرف الصناعي."
+                description: "أخرى."
             }
         ];
 
@@ -163,7 +166,7 @@
                         ${prog.title}
                     </h3>
 
-                    <!-- Subtitle / Description -->
+                    <!-- Subtitle -->
                     <p class="text-xs font-semibold text-slate-500 mb-3">
                         ${prog.subtitle}
                     </p>
