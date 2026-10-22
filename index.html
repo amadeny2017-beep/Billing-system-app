@@ -51,11 +51,6 @@
                     <p class="text-xs text-slate-300 mt-0.5">شركة مياه الشرب والصرف الصحي بالجيزة - الدليل المباشر للأنظمة والخدمات</p>
                 </div>
             </div>
-            
-            <button onclick="openModal()" class="flex items-center gap-2 bg-brand-600 hover:bg-brand-500 text-white px-5 py-2.5 rounded-xl font-semibold transition-all shadow-md hover:shadow-brand-500/25 active:scale-95 text-sm">
-                <i class="fa-solid fa-plus text-base"></i>
-                <span>إضافة برنامج جديد</span>
-            </button>
         </div>
     </header>
 
@@ -90,67 +85,6 @@
 
     </main>
 
-    <!-- Modal for Adding New Link -->
-    <div id="addModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4 transition-opacity">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 relative transform transition-all scale-100">
-            <div class="flex justify-between items-center mb-5 pb-3 border-b border-slate-100">
-                <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2">
-                    <i class="fa-solid fa-link text-brand-600"></i>
-                    إضافة برنامج جديد
-                </h3>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg hover:bg-slate-100 transition-colors">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-
-            <form id="addLinkForm" onsubmit="handleAddLink(event)" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-1.5">اسم البرنامج / النظام *</label>
-                    <input type="text" id="progTitle" required placeholder="مثال: نظام التحصيل الميداني" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none text-sm">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-1.5">رابط الموقع (URL) *</label>
-                    <input type="url" id="progUrl" required placeholder="https://example.gcww.com.eg" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none text-sm dir-ltr text-right">
-                </div>
-
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">التصنيف *</label>
-                        <select id="progCategory" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none text-sm bg-white">
-                            <option value="علاقات العملاء">علاقات العملاء</option>
-                            <option value="القراءة والإصدار">القراءة والإصدار</option>
-                            <option value="تحديث البيانات">تحديث البيانات</option>
-                            <option value="الفواتير والتحصيل">الفواتير والتحصيل</option>
-                            <option value="أخرى">أخرى</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1.5">الأيقونة</label>
-                        <select id="progIcon" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none text-sm bg-white">
-                            <option value="fa-users text-purple-600">عملاء 👥</option>
-                            <option value="fa-database text-blue-600">قواعد بيانات 🗄️</option>
-                            <option value="fa-bolt text-amber-500">نظام حديث ⚡</option>
-                            <option value="fa-address-card text-emerald-600">بيانات 🆔</option>
-                            <option value="fa-credit-card text-cyan-600">تحصيل 💳</option>
-                            <option value="fa-globe text-slate-600">رابط عام 🌐</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-1.5">وصف قصير</label>
-                    <textarea id="progDesc" rows="3" placeholder="اكتب وصفاً مختصراً للخدمة أو الاستخدام..." class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none text-sm resize-none"></textarea>
-                </div>
-
-                <div class="flex justify-end gap-3 pt-3 border-t border-slate-100">
-                    <button type="button" onclick="closeModal()" class="px-5 py-2.5 text-slate-600 font-semibold text-sm hover:bg-slate-100 rounded-xl transition-colors">إلغاء</button>
-                    <button type="submit" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm rounded-xl shadow-md transition-colors">حفظ وإضافة</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-200 py-6 mt-auto">
         <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
@@ -161,8 +95,8 @@
 
     <!-- JavaScript Script Section -->
     <script>
-        // Official GCWW Links Initial Data
-        const initialPrograms = [
+        // Official GCWW Links Static Read-Only Data
+        const programs = [
             {
                 id: 1,
                 title: "نظام إدارة علاقات العملاء (CRM)",
@@ -205,13 +139,7 @@
             }
         ];
 
-        // State Management
-        let programs = JSON.parse(localStorage.getItem('billing_programs')) || initialPrograms;
         let selectedCategory = 'الكل';
-
-        function saveData() {
-            localStorage.setItem('billing_programs', JSON.stringify(programs));
-        }
 
         function renderCategories() {
             const categories = ['الكل', ...new Set(programs.map(p => p.category))];
@@ -248,11 +176,6 @@
             emptyState.classList.add('hidden');
             grid.innerHTML = data.map(prog => `
                 <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group hover:-translate-y-1 relative">
-                    
-                    <button onclick="deleteLink(${prog.id})" title="حذف البرنامج" class="absolute left-4 top-4 opacity-0 group-hover:opacity-100 transition-opacity text-slate-300 hover:text-red-500 p-1">
-                        <i class="fa-solid fa-trash-can text-sm"></i>
-                    </button>
-
                     <div>
                         <div class="flex items-center gap-3.5 mb-4">
                             <div class="w-12 h-12 rounded-2xl bg-brand-50 border border-brand-100 text-brand-600 flex items-center justify-center text-xl shadow-inner group-hover:bg-brand-600 group-hover:text-white transition-colors">
@@ -298,40 +221,6 @@
             renderCards(filtered);
         }
 
-        function handleAddLink(e) {
-            e.preventDefault();
-            const title = document.getElementById('progTitle').value;
-            const url = document.getElementById('progUrl').value;
-            const category = document.getElementById('progCategory').value;
-            const icon = document.getElementById('progIcon').value;
-            const description = document.getElementById('progDesc').value;
-
-            const newProgram = {
-                id: Date.now(),
-                title,
-                url,
-                category,
-                icon,
-                description
-            };
-
-            programs.unshift(newProgram);
-            saveData();
-            renderCategories();
-            filterLinks();
-            closeModal();
-            document.getElementById('addLinkForm').reset();
-            showToast("تمت إضافة البرنامج بنجاح!");
-        }
-
-        function deleteLink(id) {
-            programs = programs.filter(p => p.id !== id);
-            saveData();
-            renderCategories();
-            filterLinks();
-            showToast("تم حذف البرنامج من القائمة.");
-        }
-
         function copyToClipboard(text) {
             const tempInput = document.createElement("input");
             tempInput.value = text;
@@ -349,16 +238,6 @@
             toast.innerHTML = `<i class="fa-solid fa-circle-check text-green-400"></i> ${message}`;
             document.body.appendChild(toast);
             setTimeout(() => toast.remove(), 2500);
-        }
-
-        function openModal() {
-            document.getElementById('addModal').classList.remove('hidden');
-            document.getElementById('addModal').classList.add('flex');
-        }
-
-        function closeModal() {
-            document.getElementById('addModal').classList.add('hidden');
-            document.getElementById('addModal').classList.remove('flex');
         }
 
         window.onload = function() {
